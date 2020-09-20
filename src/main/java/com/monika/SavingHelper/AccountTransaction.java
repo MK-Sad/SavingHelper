@@ -2,7 +2,6 @@ package com.monika.SavingHelper;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.Instant;
 
@@ -10,7 +9,7 @@ import java.time.Instant;
 public class AccountTransaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
     private Instant date;
     private String user;

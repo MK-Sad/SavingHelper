@@ -1,9 +1,8 @@
 package com.monika.SavingHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 public class AccountController {
@@ -22,8 +21,18 @@ public class AccountController {
     }
 
     @GetMapping("accountBalance/transactions")
-    Page<AccountTransaction> showAllTransactions(Pageable pageable){
-        return accountTransactionService.getAllTransactions(pageable);
+    List<AccountTransaction> showAllTransactions(){
+        return accountTransactionService.getAllTransactions();
+    }
+
+    @GetMapping("accountBalance/transactions/category/{category}")
+    List<AccountTransaction> showTransactionByCategory(@PathVariable String category){
+        return accountTransactionService.getTransactionByCategory(category);
+    }
+
+    @GetMapping("account/transactions/{year}/{month}")
+    List<AccountTransaction> showTransactionsForYearAndMonth(@PathVariable int year, @PathVariable int month){
+        return accountTransactionService.getTransactionsForYearAndMonth(year, month);
     }
 
 
